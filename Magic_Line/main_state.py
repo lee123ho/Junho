@@ -91,7 +91,6 @@ class Ghost2:
         if self.y - 300 < 0:
             self.y += 0.5
         else:
-            self.y -= 0.5
 
     def draw(self):
         global kill
