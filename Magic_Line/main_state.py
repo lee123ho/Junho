@@ -37,7 +37,7 @@ class Boy:
             self.frame = 0
         else:
             self.frame = 5
-        self.image = load_image('pig_magician.png')
+        self.image = load_image('pig_magician3.png')
 
     def update(self):
         global dmx, dmy, umx, umy, up, act, kill
@@ -90,7 +90,6 @@ class Ghost2:
             self.x += 0.5
         if self.y - 300 < 0:
             self.y += 0.5
-        else:
 
     def draw(self):
         global kill
