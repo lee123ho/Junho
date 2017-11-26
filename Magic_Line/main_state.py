@@ -5,112 +5,113 @@ import os
 from pico2d import *
 
 import game_framework
+from pig_magician import PigMagician
+from first_stage import FirstStage
+from ghost_left import GhostLeft
+from ghost_right import GhostRight
+from symbol import *
 import title_state
 
 name = "MainState"
 
-boy = None
-grass = None
-font = None
-die = 0
-kill = 0
-act = 0
-up = 0
-dmx = 0
-dmy = 0
-umx = 0
-umy = 0
+ghosts_left = None
+ghosts_right = None
+width_symbols = None
+length_symbols = None
+ghost_left_time = 0
+ghost_right_time = 0
+A = 0
 
-class Grass:
-    def __init__(self):
-        self.image = load_image('room.png')
 
-    def draw(self):
-        self.image.draw(400, 300)
+def create_world():
+    global pig_magician, first_stage, ghost_left, ghost_right, symbol_width, symbol_length, ghosts_right, ghosts_left, width_symbols, length_symbols
 
-class Boy:
-    global dmx, dmy, umx, umy, up, act, kill
+    ghosts_left = []
+    ghosts_right = []
+    width_symbols = []
+    length_symbols = []
 
-    def __init__(self):
-        self.x, self.y = 400, 300
-        if up == 0:
-            self.frame = 0
+    pig_magician = PigMagician()
+    first_stage = FirstStage()
+
+
+def create_ghost(frame_time):
+    global ghost_right_time, ghost_left_time
+    ghost_left_time += frame_time
+    ghost_right_time += frame_time
+
+    if ghost_left_time >= 4:
+        ghost_left = GhostLeft()
+        ghosts_left.append(ghost_left)
+        ghost_left_time = 0.0
+
+    if ghost_right_time >= 5:
+        ghost_right = GhostRight()
+        ghosts_right.append(ghost_right)
+        ghost_right_time = 0.0
+
+def create_symbol(frame_time):
+    global symbol_width, symbol_length
+    for GhostsLeft in ghosts_left:
+        if GhostsLeft.type == 1:
+            symbol_width = WidthSymbol(*GhostsLeft.symbol_pos())
+            width_symbols.append(symbol_width)
         else:
-            self.frame = 5
-        self.image = load_image('pig_magician3.png')
+            symbol_length = LengthSymbol(*GhostsLeft.symbol_pos())
+            length_symbols.append(symbol_length)
 
-    def update(self):
-        global dmx, dmy, umx, umy, up, act, kill
-        print(abs(dmy))
-        if act == 1:
-            if abs(dmx - umx) > abs(umy - dmy):
-                self.frame += 1
-                delay(0.05)
-                if self.frame == 5:
-                    self.frame = 0
-                    act = 0
-                    kill = 1
-            elif abs(umy - dmy) > abs(dmx - umx):
-                up = 1
-                self.frame += 1
-                delay(0.05)
-                if self.frame == 8:
-                    self.frame = 0
-                    act = 0
-                    kill = 2
-
-    def draw(self):
-        self.image.clip_draw(self.frame * 300, 0, 250, 300, self.x, self.y)
-
-class Ghost1:
-    def __init__(self):
-        self.x, self.y = random.randint(650, 700), random.randint(200,400)
-        self.image = load_image('ghost1.png')
-
-    def update(self):
-        if self.x > 400:
-            self.x -= 0.5
-        if self.y - 300 < 0:
-            self.y += 0.5
+    for GhostsRight in ghosts_right:
+        if GhostsRight.type == 1:
+            symbol_width = WidthSymbol(*GhostsRight.symbol_pos())
+            width_symbols.append(symbol_width)
         else:
-            self.y -= 0.5
+            symbol_length = LengthSymbol(*GhostsRight.symbol_pos())
+            length_symbols.append(symbol_length)
 
-    def draw(self):
-        global kill
-        if kill < 1:
-            self.image.draw(self.x, self.y)
 
-class Ghost2:
-    def __init__(self):
-        self.x, self.y = random.randint(0, 50), random.randint(200,400)
-        self.image = load_image('ghost2.png')
+def kill_ghost(frame_time):
+    global ghosts_right, ghosts_left, width_symbols, length_symbols, symbol_width, symbol_length
 
-    def update(self):
-        if self.x < 400:
-            self.x += 0.5
-        if self.y - 300 < 0:
-            self.y += 0.5
+    for symbol_width in width_symbols:
+        for ghost_right in ghosts_right:
+            if abs(pig_magician.DownMousePosx - pig_magician.UpMousePosx) > abs(pig_magician.DownMousePosy - pig_magician.UpMousePosy):
+                if ghost_right.type == 1:
+                    ghosts_right.remove(ghost_right)
+                    width_symbols.remove(symbol_width)
+        for ghost_left in ghosts_left:
+            if abs(pig_magician.DownMousePosx - pig_magician.UpMousePosx) > abs(
+                            pig_magician.DownMousePosy - pig_magician.UpMousePosy):
+                if ghost_left.type == 1:
+                    ghosts_left.remove(ghost_left)
+                    width_symbols.remove(symbol_width)
 
-    def draw(self):
-        global kill
-        if kill < 2:
-            self.image.draw(self.x, self.y)
+    for symbol_length in length_symbols:
+        for ghost_right in ghosts_right:
+            if abs(pig_magician.DownMousePosx - pig_magician.UpMousePosx) < abs(pig_magician.DownMousePosy - pig_magician.UpMousePosy):
+                if ghost_right.type == 2:
+                    ghosts_right.remove(ghost_right)
+                    length_symbols.remove(symbol_length)
+        for ghost_left in ghosts_left:
+            if abs(pig_magician.DownMousePosx - pig_magician.UpMousePosx) < abs(pig_magician.DownMousePosy - pig_magician.UpMousePosy):
+                if ghost_left.type == 2:
+                    ghosts_left.remove(ghost_left)
+                    length_symbols.remove(symbol_length)
 
 
 def enter():
-    global boy, ghost1, ghost2, grass
-    boy = Boy()
-    ghost1 = Ghost1()
-    ghost2 = Ghost2()
-    grass = Grass()
+    game_framework.reset_time()
+    create_world()
 
 
 def exit():
-    global boy, ghost1, ghost2, grass
-    del(boy)
-    del(ghost1)
-    del(ghost2)
-    del(grass)
+    global pig_magician, ghost_left, ghost_right, first_stage, symbol, ghosts_left, ghosts_right
+    del(pig_magician)
+    del(ghost_left)
+    del(ghost_right)
+    del(first_stage)
+    del(symbol)
+    del(ghosts_left)
+    del(ghosts_right)
 
 
 def pause():
@@ -122,35 +123,72 @@ def resume():
 
 
 def handle_events(frame_time):
-    global dmx, dmy, umx, umy, act
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
             game_framework.quit()
-        elif (event.type, event.button) == (SDL_MOUSEBUTTONDOWN, SDL_BUTTON_LEFT):
-            dmx, dmy = event.x, event.y
-        elif (event.type, event.button) == (SDL_MOUSEBUTTONUP, SDL_BUTTON_LEFT):
-            umx, umy = event.x, event.y
-            act = 1
         else:
             if (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
                 game_framework.quit()
-
-
+            else:
+                pig_magician.handle_event(event)
 
 
 def update(frame_time):
-    boy.update()
-    ghost1.update()
-    ghost2.update()
+    global symbol_length, symbol_width
+    pig_magician.update(frame_time)
+    create_ghost(frame_time)
+    create_symbol(frame_time)
+    kill_ghost(frame_time)
+
+    for ghost_left in ghosts_left:
+        ghost_left.update(frame_time)
+
+    for ghost_right in ghosts_right:
+        ghost_right.update(frame_time)
+
+    for GhostsRight in ghosts_right:
+        if collide(pig_magician, GhostsRight):
+            pig_magician.die()
+            GhostsRight.stop()
+            GhostsLeft.stop()
+
+    for GhostsLeft in ghosts_left:
+        if collide(pig_magician, GhostsLeft):
+            pig_magician.die()
+            GhostsLeft.stop()
+            GhostsRight.stop()
+
+
+def collide(a, b):
+    left_a, bottom_a, right_a, top_a = a.get_bb()
+    left_b, bottom_b, right_b, top_b = b.get_bb()
+
+    if left_a > right_b:return False
+    if right_a < left_b:return False
+    if top_a < bottom_b:return False
+    if bottom_a > top_b:return False
+
+    return True
 
 
 def draw(frame_time):
+    global ghosts_right, ghosts_left, length_symbols, width_symbols
+    all_ghosts = ghosts_left + ghosts_right
+    all_symbols = length_symbols + width_symbols
     clear_canvas()
-    grass.draw()
-    ghost1.draw()
-    ghost2.draw()
-    boy.draw()
+    first_stage.draw()
+    for Ghosts in all_ghosts:
+        Ghosts.draw()
+        Ghosts.draw_bb()
+
+
+    pig_magician.draw()
+    for Symbols in all_symbols:
+        Symbols.draw()
+
+    pig_magician.draw_bb()
+
     update_canvas()
 
 
