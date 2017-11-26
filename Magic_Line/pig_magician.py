@@ -22,7 +22,7 @@ class PigMagician:
         PigMagician.image = load_image('pig_magician.png')
 
     def update(self, frame_time):
-        print(abs(self.DownMousePosx - self.UpMousePosx) - abs(self.UpMousePosy - self.DownMousePosy))
+        #print(abs(self.DownMousePosx - self.UpMousePosx) - abs(self.UpMousePosy - self.DownMousePosy))
         if self.act == 1:
             if abs(self.DownMousePosx - self.UpMousePosx) > abs(self.UpMousePosy - self.DownMousePosy):
                 self.frame += 1
@@ -34,7 +34,7 @@ class PigMagician:
                     self.UpMousePosx = 0
                     self.DownMousePosy = 0
                     self.UpMousePosy = 0
-            elif abs(self.UpMousePosy - self.DownMousePosy) > abs(self.DownMousePosx - self.UpMousePosx):
+            elif abs(self.DownMousePosx - self.UpMousePosx) < abs(self.UpMousePosy - self.DownMousePosy):
                 self.frame += 1
                 delay(0.05)
                 if self.frame == 8:

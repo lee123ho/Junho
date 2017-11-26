@@ -15,8 +15,9 @@ class GhostLeft:
     def __init__(self):
         self.x, self.y = random.randint(750, 800), random.randint(0,600)
         self.regen_time = 0.0
+        self.stage_speed = 1.0
+        self.speed = self.RUN_SPEED_KMPH * self.stage_speed
         self.image_normal = load_image('ghost_left.png')
-        self.image_die = load_image('ghost_die.png')
         self.type = random.randint(1, 2)
 
     def symbol_pos(self):
@@ -33,6 +34,9 @@ class GhostLeft:
 
     def stop(self):
         GhostLeft.RUN_SPEED_PPS = 0
+
+    def die(self):
+        self.image_die = load_image('ghost_die.png')
 
     def get_bb(self):
         return self.x - 75, self. y - 75, self.x + 75, self.y + 75

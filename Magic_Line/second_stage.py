@@ -6,11 +6,10 @@ from pico2d import *
 
 import game_framework
 from pig_magician import PigMagician
-from first_floor import FirstFloor
+from second_floor import SecondFloor
 from ghost_left import GhostLeft
 from ghost_right import GhostRight
 from symbol import *
-import second_stage
 
 name = "MainState"
 
@@ -24,7 +23,7 @@ KillPoint = 0
 
 
 def create_world():
-    global pig_magician, first_floor, ghost_left, ghost_right, symbol_width, symbol_length, ghosts_right, ghosts_left, width_symbols, length_symbols
+    global pig_magician, second_floor, ghost_left, ghost_right, symbol_width, symbol_length, ghosts_right, ghosts_left, width_symbols, length_symbols
 
     ghosts_left = []
     ghosts_right = []
@@ -32,7 +31,7 @@ def create_world():
     length_symbols = []
 
     pig_magician = PigMagician()
-    first_floor = FirstFloor()
+    second_floor = SecondFloor()
 
 
 def create_ghost(frame_time):
@@ -94,8 +93,6 @@ def kill_ghost(frame_time):
                     ghosts_left.remove(ghost_left)
                     KillPoint += 1
 
-    print(KillPoint)
-
 
 def enter():
     game_framework.reset_time()
@@ -103,13 +100,13 @@ def enter():
 
 
 def exit():
-    global pig_magician, ghost_left, ghost_right, first_floor, symbol, ghosts_left, ghosts_right, width_symbols, length_symbols
-    del(pig_magician)
-    del(ghosts_left)
-    del(ghosts_right)
-    del(first_floor)
-    del(width_symbols)
-    del(length_symbols)
+    global pig_magician, ghost_left, ghost_right, second_floor, symbol, ghosts_left, ghosts_right, width_symbols, length_symbols
+    del (pig_magician)
+    del (ghosts_left)
+    del (ghosts_right)
+    del (second_floor)
+    del (width_symbols)
+    del (length_symbols)
 
 
 def pause():
@@ -126,10 +123,6 @@ def handle_events(frame_time):
     for event in events:
         if event.type == SDL_QUIT:
             game_framework.quit()
-        elif KillPoint == 20:
-            game_framework.change_state(second_stage)
-        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_l):
-            game_framework.change_state(second_stage)
         else:
             if (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
                 game_framework.quit()
@@ -180,7 +173,7 @@ def draw(frame_time):
     all_ghosts = ghosts_left + ghosts_right
     all_symbols = length_symbols + width_symbols
     clear_canvas()
-    first_floor.draw()
+    second_floor.draw()
     for Ghosts in all_ghosts:
         Ghosts.draw()
         Ghosts.draw_bb()
