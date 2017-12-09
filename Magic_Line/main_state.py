@@ -55,18 +55,18 @@ def create_symbol(frame_time):
     for GhostsLeft in ghosts_left:
         if GhostsLeft.type == 1:
             symbol_width = WidthSymbol(*GhostsLeft.symbol_pos())
-            width_symbols.append(symbol_width)
+            width_symbols.insert(0 ,symbol_width)
         else:
             symbol_length = LengthSymbol(*GhostsLeft.symbol_pos())
-            length_symbols.append(symbol_length)
+            length_symbols.insert(0, symbol_length)
 
     for GhostsRight in ghosts_right:
         if GhostsRight.type == 1:
             symbol_width = WidthSymbol(*GhostsRight.symbol_pos())
-            width_symbols.append(symbol_width)
+            width_symbols.insert(0, symbol_width)
         else:
             symbol_length = LengthSymbol(*GhostsRight.symbol_pos())
-            length_symbols.append(symbol_length)
+            length_symbols.insert(0, symbol_length)
 
 
 def kill_ghost(frame_time):
@@ -75,7 +75,6 @@ def kill_ghost(frame_time):
     for ghost_right in ghosts_right:
         if pig_magician.UpMousePosx != 0:
             if abs(pig_magician.DownMousePosx - pig_magician.UpMousePosx) > abs(pig_magician.DownMousePosy - pig_magician.UpMousePosy):
-                if ghost_right.type == 1:
                     ghosts_right.remove(ghost_right)
                     KillPoint += 1
             elif abs(pig_magician.DownMousePosx - pig_magician.UpMousePosx) < abs(pig_magician.DownMousePosy - pig_magician.UpMousePosy):

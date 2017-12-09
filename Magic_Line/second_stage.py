@@ -21,7 +21,6 @@ ghost_left_time = 0
 ghost_right_time = 0
 KillPoint = 0
 
-
 def create_world():
     global pig_magician, second_floor, ghost_left, ghost_right, symbol_width, symbol_length, ghosts_right, ghosts_left, width_symbols, length_symbols
 
