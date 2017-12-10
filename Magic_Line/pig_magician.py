@@ -20,30 +20,26 @@ class PigMagician:
         self.frame = 0
         self.act = 0
         PigMagician.image = load_image('pig_magician.png')
+        self.width_bgm = load_music('width.mp3')
+        self.length_bgm = load_music('length.mp3')
 
     def update(self, frame_time):
         #print(abs(self.DownMousePosx - self.UpMousePosx) - abs(self.UpMousePosy - self.DownMousePosy))
         if self.act == 1:
             if abs(self.DownMousePosx - self.UpMousePosx) > abs(self.UpMousePosy - self.DownMousePosy):
                 self.frame += 1
-                delay(0.05)
                 if self.frame == 5:
                     self.frame = 0
                     self.act = 0
-                    self.DownMousePosx = 0
-                    self.UpMousePosx = 0
-                    self.DownMousePosy = 0
-                    self.UpMousePosy = 0
+                    self.DownMousePosx, self.DownMousePosy, self.UpMousePosx, self.UpMousePosy = 0, 0, 0, 0
+                    self.width_bgm.play()
             elif abs(self.DownMousePosx - self.UpMousePosx) < abs(self.UpMousePosy - self.DownMousePosy):
                 self.frame += 1
-                delay(0.05)
                 if self.frame == 8:
                     self.frame = 0
                     self.act = 0
-                    self.DownMousePosx = 0
-                    self.UpMousePosx = 0
-                    self.DownMousePosy = 0
-                    self.UpMousePosy = 0
+                    self.length_bgm.play()
+                    self.DownMousePosx, self.DownMousePosy, self.UpMousePosx, self.UpMousePosy = 0, 0, 0, 0
         if self.die == True:
             self.frame = 0
             self.frame += 1

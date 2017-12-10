@@ -15,8 +15,7 @@ class GhostLeft:
     def __init__(self):
         self.x, self.y = random.randint(750, 800), random.randint(0,600)
         self.regen_time = 0.0
-        self.stage_speed = 1.0
-        self.speed = self.RUN_SPEED_KMPH * self.stage_speed
+        self.speed = 0
         self.image_normal = load_image('ghost_left.png')
         self.type = random.randint(1, 2)
 
@@ -26,11 +25,11 @@ class GhostLeft:
     def update(self, frame_time):
         distance = GhostLeft.RUN_SPEED_PPS * frame_time
         if self.x > 400:
-            self.x -= distance
+            self.x -= distance + self.speed
         if self.y - 300 < 0:
-            self.y += distance
+            self.y += distance + self.speed
         else:
-            self.y -= distance
+            self.y -= distance + self.speed
 
     def stop(self):
         GhostLeft.RUN_SPEED_PPS = 0

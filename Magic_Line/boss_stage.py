@@ -5,16 +5,17 @@ import os
 from pico2d import *
 
 import game_framework
+from boss import Boss
 from pig_magician import PigMagician
-from second_floor import SecondFloor
+from boss_floor import BossFloor
 from ghost_left import GhostLeft
 from ghost_right import GhostRight
 from symbol import *
-import third_stage
 import game_over
 
-name = "SecondStage"
+name = "BossStage"
 
+boss = None
 ghosts_left = None
 ghosts_right = None
 width_symbols = None
@@ -28,19 +29,18 @@ GameOver = 0
 
 
 def create_world():
-    global pig_magician, second_floor, ghost_left, ghost_right, symbol_width, symbol_length, ghosts_right, ghosts_left, width_symbols, length_symbols
+    global pig_magician, boss_floor, ghost_left, ghost_right, symbol_width, symbol_length, ghosts_right, ghosts_left, width_symbols, length_symbols, boss
 
     ghosts_left = []
     ghosts_right = []
     width_symbols = []
     length_symbols = []
 
+    boss = Boss()
     pig_magician = PigMagician()
-    second_floor = SecondFloor()
+    boss_floor = BossFloor()
     symbol_width = WidthSymbol
     symbol_length = LengthSymbol
-    ghost_left = GhostLeft
-    ghost_right = GhostRight
 
 
 def create_ghost(frame_time):
@@ -48,7 +48,7 @@ def create_ghost(frame_time):
     ghost_left_time += frame_time
     ghost_right_time += frame_time
 
-    if ghost_left_time >= 3:
+    if ghost_left_time >= 4:
         ghost_left = GhostLeft()
         ghosts_left.append(ghost_left)
         if ghost_left.type == 1:
@@ -59,7 +59,7 @@ def create_ghost(frame_time):
             length_symbols.append(symbol_length)
         ghost_left_time = 0.0
 
-    if ghost_right_time >= 4:
+    if ghost_right_time >= 5:
         ghost_right = GhostRight()
         ghosts_right.append(ghost_right)
         if ghost_right.type == 1:
@@ -137,13 +137,14 @@ def enter():
 
 
 def exit():
-    global pig_magician, ghost_left, ghost_right, second_floor, symbol, ghosts_left, ghosts_right, width_symbols, length_symbols
+    global pig_magician, ghost_left, ghost_right, boss_floor, symbol, ghosts_left, ghosts_right, width_symbols, length_symbols, boss
     del(pig_magician)
     del(ghosts_left)
     del(ghosts_right)
-    del(second_floor)
+    del(boss_floor)
     del(width_symbols)
     del(length_symbols)
+    del(boss)
 
 
 def pause():
@@ -160,10 +161,6 @@ def handle_events(frame_time):
     for event in events:
         if event.type == SDL_QUIT:
             game_framework.quit()
-        elif KillPoint == 30:
-            game_framework.change_state(third_stage)
-        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_l):
-            game_framework.change_state(third_stage)
         elif GameOver == 1:
             game_framework.change_state(game_over)
         else:
@@ -174,16 +171,13 @@ def handle_events(frame_time):
 
 
 def update(frame_time):
-    global symbol_length, symbol_width, GhostsLeft, GhostsRight, GameOver, ghost_left, ghost_right
+    global symbol_length, symbol_width, GhostsLeft, GameOver
     pig_magician.update(frame_time)
+    boss.update(frame_time)
     create_ghost(frame_time)
     #create_symbol(frame_time)
     kill_ghost(frame_time)
     delete_symbol(frame_time)
-    ghost_left.speed = 1
-    ghost_right.speed = 1
-    symbol_width.speed = 1
-    symbol_length.speed = 1
 
     for ghost_left in ghosts_left:
         ghost_left.update(frame_time)
@@ -229,17 +223,17 @@ def draw(frame_time):
     all_ghosts = ghosts_left + ghosts_right
     all_symbols = length_symbols + width_symbols
     clear_canvas()
-    second_floor.draw()
-    for Ghosts in all_ghosts:
-        Ghosts.draw()
-        Ghosts.draw_bb()
+    boss_floor.draw()
+    boss.draw()
+    #for Ghosts in all_ghosts:
+     #   Ghosts.draw()
+      #  Ghosts.draw_bb()
 
+    #for Symbols in all_symbols:
+     #   Symbols.draw()
 
-    pig_magician.draw()
-    for Symbols in all_symbols:
-        Symbols.draw()
-
-    pig_magician.draw_bb()
+    #pig_magician.draw()
+    #pig_magician.draw_bb()
 
     update_canvas()
 

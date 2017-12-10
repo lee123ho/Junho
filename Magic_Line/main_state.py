@@ -11,16 +11,20 @@ from ghost_left import GhostLeft
 from ghost_right import GhostRight
 from symbol import *
 import second_stage
+import game_over
 
-name = "MainState"
+name = "MainStage"
 
 ghosts_left = None
 ghosts_right = None
 width_symbols = None
 length_symbols = None
+symbol_width = None
+symbol_length = None
 ghost_left_time = 0
 ghost_right_time = 0
 KillPoint = 0
+GameOver = 0
 
 
 def create_world():
@@ -33,6 +37,8 @@ def create_world():
 
     pig_magician = PigMagician()
     first_floor = FirstFloor()
+    symbol_width = WidthSymbol
+    symbol_length = LengthSymbol
 
 
 def create_ghost(frame_time):
@@ -43,57 +49,84 @@ def create_ghost(frame_time):
     if ghost_left_time >= 4:
         ghost_left = GhostLeft()
         ghosts_left.append(ghost_left)
+        if ghost_left.type == 1:
+            symbol_width = WidthSymbol(*ghost_left.symbol_pos())
+            width_symbols.append(symbol_width)
+        else:
+            symbol_length = LengthSymbol(*ghost_left.symbol_pos())
+            length_symbols.append(symbol_length)
         ghost_left_time = 0.0
 
     if ghost_right_time >= 5:
         ghost_right = GhostRight()
         ghosts_right.append(ghost_right)
+        if ghost_right.type == 1:
+            symbol_width = WidthSymbol(*ghost_right.symbol_pos())
+            width_symbols.append(symbol_width)
+        else:
+            symbol_length = LengthSymbol(*ghost_right.symbol_pos())
+            length_symbols.append(symbol_length)
         ghost_right_time = 0.0
 
-def create_symbol(frame_time):
-    global symbol_width, symbol_length
-    for GhostsLeft in ghosts_left:
-        if GhostsLeft.type == 1:
-            symbol_width = WidthSymbol(*GhostsLeft.symbol_pos())
-            width_symbols.insert(0 ,symbol_width)
-        else:
-            symbol_length = LengthSymbol(*GhostsLeft.symbol_pos())
-            length_symbols.insert(0, symbol_length)
 
-    for GhostsRight in ghosts_right:
-        if GhostsRight.type == 1:
-            symbol_width = WidthSymbol(*GhostsRight.symbol_pos())
-            width_symbols.insert(0, symbol_width)
-        else:
-            symbol_length = LengthSymbol(*GhostsRight.symbol_pos())
-            length_symbols.insert(0, symbol_length)
+
+
+def delete_symbol(frame_time):
+    global symbol_width, symbol_length
+
+    if pig_magician.UpMousePosx != 0:
+        if abs(pig_magician.DownMousePosx - pig_magician.UpMousePosx) > abs(pig_magician.DownMousePosy - pig_magician.UpMousePosy):
+            for symbol_width in width_symbols:
+                    width_symbols.remove(symbol_width)
+        elif abs(pig_magician.DownMousePosx - pig_magician.UpMousePosx) < abs(pig_magician.DownMousePosy - pig_magician.UpMousePosy):
+            for symbol_length in length_symbols:
+                length_symbols.remove(symbol_length)
+
+    if pig_magician.UpMousePosx != 0:
+        if abs(pig_magician.DownMousePosx - pig_magician.UpMousePosx) > abs(pig_magician.DownMousePosy - pig_magician.UpMousePosy):
+            for symbol_width in width_symbols:
+                width_symbols.remove(symbol_width)
+        elif abs(pig_magician.DownMousePosx - pig_magician.UpMousePosx) < abs(pig_magician.DownMousePosy - pig_magician.UpMousePosy):
+            for symbol_length in length_symbols:
+                length_symbols.remove(symbol_length)
 
 
 def kill_ghost(frame_time):
     global ghosts_right, ghosts_left, width_symbols, length_symbols, symbol_width, symbol_length, KillPoint
 
-    for ghost_right in ghosts_right:
-        if pig_magician.UpMousePosx != 0:
+    if pig_magician.UpMousePosx != 0:
+        for ghost_right in ghosts_right:
             if abs(pig_magician.DownMousePosx - pig_magician.UpMousePosx) > abs(pig_magician.DownMousePosy - pig_magician.UpMousePosy):
+                if ghost_right.type == 1:
+                    ghost_right.die
                     ghosts_right.remove(ghost_right)
+                    for symbol_width in width_symbols:
+                        width_symbols.remove(symbol_width)
                     KillPoint += 1
             elif abs(pig_magician.DownMousePosx - pig_magician.UpMousePosx) < abs(pig_magician.DownMousePosy - pig_magician.UpMousePosy):
                 if ghost_right.type == 2:
+                    ghost_right.die
                     ghosts_right.remove(ghost_right)
+                    for symbol_length in length_symbols:
+                        length_symbols.remove(symbol_length)
                     KillPoint += 1
 
-    for ghost_left in ghosts_left:
-        if pig_magician.UpMousePosx != 0:
+    if pig_magician.UpMousePosx != 0:
+        for ghost_left in ghosts_left:
             if abs(pig_magician.DownMousePosx - pig_magician.UpMousePosx) > abs(pig_magician.DownMousePosy - pig_magician.UpMousePosy):
                 if ghost_left.type == 1:
+                    ghost_left.die
                     ghosts_left.remove(ghost_left)
+                    for symbol_width in width_symbols:
+                        width_symbols.remove(symbol_width)
                     KillPoint += 1
             elif abs(pig_magician.DownMousePosx - pig_magician.UpMousePosx) < abs(pig_magician.DownMousePosy - pig_magician.UpMousePosy):
                 if ghost_left.type == 2:
+                    ghost_left.die
                     ghosts_left.remove(ghost_left)
+                    for symbol_length in length_symbols:
+                        length_symbols.remove(symbol_length)
                     KillPoint += 1
-
-    print(KillPoint)
 
 
 def enter():
@@ -120,7 +153,7 @@ def resume():
 
 
 def handle_events(frame_time):
-    global KillPoint
+    global KillPoint, GameOver
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -129,6 +162,8 @@ def handle_events(frame_time):
             game_framework.change_state(second_stage)
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_l):
             game_framework.change_state(second_stage)
+        elif GameOver == 1:
+            game_framework.change_state(game_over)
         else:
             if (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
                 game_framework.quit()
@@ -137,11 +172,12 @@ def handle_events(frame_time):
 
 
 def update(frame_time):
-    global symbol_length, symbol_width, GhostsLeft
+    global symbol_length, symbol_width, GhostsLeft, GameOver
     pig_magician.update(frame_time)
     create_ghost(frame_time)
-    create_symbol(frame_time)
+    #create_symbol(frame_time)
     kill_ghost(frame_time)
+    delete_symbol(frame_time)
 
     for ghost_left in ghosts_left:
         ghost_left.update(frame_time)
@@ -149,17 +185,25 @@ def update(frame_time):
     for ghost_right in ghosts_right:
         ghost_right.update(frame_time)
 
+    for symbol_width in width_symbols:
+        symbol_width.update(frame_time)
+
+    for symbol_length in length_symbols:
+        symbol_length.update(frame_time)
+
     for GhostsRight in ghosts_right:
         if collide(pig_magician, GhostsRight):
             pig_magician.die()
             GhostsRight.stop()
             GhostsLeft.stop()
+            GameOver = 1
 
     for GhostsLeft in ghosts_left:
         if collide(pig_magician, GhostsLeft):
             pig_magician.die()
             GhostsLeft.stop()
             GhostsRight.stop()
+            GameOver = 1
 
 
 def collide(a, b):
