@@ -7,7 +7,7 @@ Thu Nov 23 20:31:21 2017 +0900 2DGP
 Wed Nov 22 23:12:39 2017 +0900 2DGP
 Tue Nov 21 22:09:43 2017 +0900 Base
 Sun Nov 5  20:15:17 2017 +0900 2DGP
-Sun Nov 5  20:15:05 2017 +0900 2DGP
-Sun Nov 5  11:46:37 2017 +0900 2DGP
-Sun Nov 5  11:43:20 2017 +0900 Revert "���� PPT"
-Sun Nov 5  11:42:54 2017 +0900 ���� PPT
+Sun Nov 5  20:15:05 2017 +0900 Revert “Revert "Revert "과제¦ PPT“
+Sun Nov 5  11:46:37 2017 +0900 Revert “Revert "과제¦ PPT“
+Sun Nov 5  11:43:20 2017 +0900 Revert "과제¦ PPT“
+Sun Nov 5  11:42:54 2017 +0900 과제¦ PPT
