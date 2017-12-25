@@ -4,7 +4,11 @@
     <bookmark url="file://$PROJECT_DIR$/symbol.py" line="22" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="94ac5f8e-1ab6-4b37-bd98-f7f2cbd90f96" name="Default" comment="" />
+    <list default="true" id="94ac5f8e-1ab6-4b37-bd98-f7f2cbd90f96" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/boss.py" afterPath="$PROJECT_DIR$/boss.py" />
+      <change beforePath="$PROJECT_DIR$/boss_sheet.png" afterPath="" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,18 +28,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pig_magician.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pig_magician.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="boss.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="boss.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/boss.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="18" column="17" lean-forward="false" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+            <state relative-caret-position="342">
+              <caret line="22" column="43" lean-forward="false" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -44,7 +41,7 @@
       <file leaf-file-name="boss_stage.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/boss_stage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4218">
+            <state relative-caret-position="1051">
               <caret line="235" column="27" lean-forward="false" selection-start-line="235" selection-start-column="27" selection-end-line="235" selection-end-column="27" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
@@ -56,7 +53,7 @@
       <file leaf-file-name="2014182034.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/2014182034.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
+            <state relative-caret-position="323">
               <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding />
             </state>
@@ -70,11 +67,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="first_floor.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="first_floor.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/first_floor.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="133">
               <caret line="7" column="33" lean-forward="false" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="boss_floor.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/boss_floor.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="95">
+              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -101,13 +108,6 @@
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="boss_sheet.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/boss_sheet.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
           </provider>
         </entry>
       </file>
@@ -153,16 +153,16 @@
         <option value="$PROJECT_DIR$/second_stage.py" />
         <option value="$PROJECT_DIR$/third_stage.py" />
         <option value="$PROJECT_DIR$/game.py" />
-        <option value="$PROJECT_DIR$/boss.py" />
         <option value="$PROJECT_DIR$/boss_stage.py" />
         <option value="$PROJECT_DIR$/2014182034.txt" />
+        <option value="$PROJECT_DIR$/boss.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="362" />
+    <option name="x" value="361" />
     <option name="y" value="9" />
-    <option name="width" value="1411" />
+    <option name="width" value="1412" />
     <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -181,6 +181,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -188,26 +189,10 @@
               <item name="Magic_Line" type="b2602c69:ProjectViewProjectNode" />
               <item name="Magic_Line" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Magic_Line" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="Magic_Line" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 3.6.2 (D:\python\python.exe) &gt;" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="Magic_Line" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 3.6.2 (D:\python\python.exe) &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="site-packages" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -269,14 +254,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="362" y="9" width="1411" height="1040" extended-state="0" />
+    <frame x="361" y="9" width="1412" height="1040" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24802868" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.247851" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32397407" sideWeight="0.53189963" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32397407" sideWeight="0.53438395" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32397407" sideWeight="0.46810037" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32397407" sideWeight="0.46561605" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -469,7 +455,7 @@
         <state relative-caret-position="1064">
           <caret line="56" column="43" lean-forward="false" selection-start-line="56" selection-start-column="43" selection-end-line="56" selection-end-column="43" />
           <folding>
-            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#0#13#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -491,13 +477,6 @@
     <entry file="file://$PROJECT_DIR$/first_floor.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/boss_floor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/game.py">
@@ -522,7 +501,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/boss_sheet.png">
+    <entry file="file://$PROJECT_DIR$/Boss_sheet.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
@@ -537,14 +516,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/boss.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="18" column="17" lean-forward="false" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main_state.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
@@ -553,19 +524,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/boss_stage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4218">
-          <caret line="235" column="27" lean-forward="false" selection-start-line="235" selection-start-column="27" selection-end-line="235" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/2014182034.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
+        <state relative-caret-position="323">
           <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
         </state>
@@ -580,6 +541,32 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="7" column="33" lean-forward="false" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boss_floor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boss_stage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1051">
+          <caret line="235" column="27" lean-forward="false" selection-start-line="235" selection-start-column="27" selection-end-line="235" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boss.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="22" column="43" lean-forward="false" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
           <folding />
         </state>
       </provider>
