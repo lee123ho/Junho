@@ -16,6 +16,7 @@ class GhostRight:
         self.x, self.y = random.randint(0, 50), random.randint(0,600)
         self.regen_time = 0.0
         self.speed = 0
+        self.time = 0
         self.image_normal = load_image('ghost_right.png')
         self.type = random.randint(1, 2)
 

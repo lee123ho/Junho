@@ -12,7 +12,11 @@ class Boss:
     def __init__(self):
         self.x, self.y = 600, 200
         self.frame = 0
+        self.type = 0
         self.image = load_image('boss_sheet_2500.png')
+
+    def symbol_pos(self):
+        return self.x, self.y + 250
 
     def update(self, frame_time):
         self.frame += 1

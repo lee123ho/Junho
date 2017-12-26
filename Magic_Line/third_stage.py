@@ -232,14 +232,14 @@ def draw(frame_time):
     third_floor.draw()
     for Ghosts in all_ghosts:
         Ghosts.draw()
-        Ghosts.draw_bb()
+        #Ghosts.draw_bb()
 
 
     pig_magician.draw()
     for Symbols in all_symbols:
         Symbols.draw()
 
-    pig_magician.draw_bb()
+    # pig_magician.draw_bb()
 
     update_canvas()
 

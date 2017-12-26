@@ -6,6 +6,8 @@ from pico2d import *
 
 class WidthSymbol:
 
+    image = None
+
     PIXEL_PER_METER = (10.0 / 0.3)  # 10 pixel 30 cm
     RUN_SPEED_KMPH = 2  # Km / Hour
     RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
@@ -15,7 +17,8 @@ class WidthSymbol:
     def __init__(self, x, y):
         self.x, self.y = x, y
         self.speed = 0
-        self.image = load_image('width.png')
+        if WidthSymbol.image == None:
+            WidthSymbol.image = load_image('width.png')
 
     def update(self, frame_time):
         distance = WidthSymbol.RUN_SPEED_PPS * frame_time
@@ -34,16 +37,19 @@ class WidthSymbol:
 
 class LengthSymbol:
 
+    image = None
+
     PIXEL_PER_METER = (10.0 / 0.3)  # 10 pixel 30 cm
     RUN_SPEED_KMPH = 2  # Km / Hour
     RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
     RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
     RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 
-    def __init__(self,x, y):
+    def __init__(self, x, y):
         self.x, self.y = x, y
         self.speed = 0
-        self.image = load_image('length.png')
+        if LengthSymbol.image == None:
+            LengthSymbol.image = load_image('length.png')
 
     def update(self, frame_time):
         distance = LengthSymbol.RUN_SPEED_PPS * frame_time
