@@ -56,7 +56,7 @@ def create_ghost(frame_time):
     ghost_left_time += frame_time
     ghost_right_time += frame_time
 
-    if ghost_left_time >= 4:
+    if ghost_left_time >= 2:
         ghost_left = GhostLeft()
         ghosts_left.append(ghost_left)
         if ghost_left.type == 1:
@@ -67,7 +67,7 @@ def create_ghost(frame_time):
             length_symbols.append(symbol_length)
         ghost_left_time = 0.0
 
-    if ghost_right_time >= 5:
+    if ghost_right_time >= 3:
         ghost_right = GhostRight()
         ghosts_right.append(ghost_right)
         if ghost_right.type == 1:

@@ -13,7 +13,7 @@ class Boss:
         self.x, self.y = 600, 200
         self.frame = 0
         self.type = 0
-        self.image = load_image('boss_sheet_2500.png')
+        self.image = load_image('Boss_sheet_2500.png')
 
     def symbol_pos(self):
         return self.x, self.y + 250

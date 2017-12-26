@@ -180,10 +180,10 @@ def update(frame_time):
     #create_symbol(frame_time)
     kill_ghost(frame_time)
     delete_symbol(frame_time)
-    ghost_left.speed = 1
-    ghost_right.speed = 1
-    symbol_width.speed = 1
-    symbol_length.speed = 1
+    ghost_left.speed = 3
+    ghost_right.speed = 3
+    symbol_width.speed = 3
+    symbol_length.speed = 3
 
     for ghost_left in ghosts_left:
         ghost_left.update(frame_time)

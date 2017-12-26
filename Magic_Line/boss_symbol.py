@@ -48,11 +48,7 @@ class BossLengthSymbol:
             BossLengthSymbol.image = load_image('length.png')
 
     def update(self, frame_time):
-        distance = BossLengthSymbol.RUN_SPEED_PPS * frame_time
-        if self.x > 400:
-            self.x -= distance + self.speed
-        elif self.x < 400:
-            self.x += distance + self.speed
+        pass
 
     def draw(self):
         self.image.draw(self.x, self.y)

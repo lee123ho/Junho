@@ -24,9 +24,9 @@ class PigMagician:
         self.act = 0
         PigMagician.image = load_image('pig_magician_200.png')
         if PigMagician.width_bgm == None:
-            PigMagician.width_bgm = load_music('width.mp3')
+            PigMagician.width_bgm = load_wav('width.wav')
         if PigMagician.length_bgm == None:
-            PigMagician.length_bgm = load_music('length.mp3')
+            PigMagician.length_bgm = load_wav('length.wav')
 
     def update(self, frame_time):
         #print(abs(self.DownMousePosx - self.UpMousePosx) - abs(self.UpMousePosy - self.DownMousePosy))
